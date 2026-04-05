@@ -1,3 +1,4 @@
+import Cursor from './components/ui/Cursor'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Hero from './components/sections/Hero'
@@ -10,12 +11,13 @@ import Contact from './components/sections/Contact'
 export default function App() {
   return (
     <>
+      <Cursor />
       <Header />
       <main>
         <Hero />
         <About />
-        <TechStack />
         <Projects />
+        <TechStack />
         <Experience />
         <Contact />
       </main>
