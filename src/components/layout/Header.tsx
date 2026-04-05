@@ -2,31 +2,26 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { href: '#about',      label: 'Sobre mí' },
-  { href: '#stack',      label: 'Stack' },
-  { href: '#projects',   label: 'Proyectos' },
-  { href: '#experience', label: 'Experiencia' },
-  { href: '#contact',    label: 'Contacto' },
+  { href: '#about',    label: 'About' },
+  { href: '#projects', label: 'Work' },
+  { href: '#skills',   label: 'Skills' },
+  { href: '#contact',  label: 'Contact' },
 ]
 
 export default function Header() {
-  const [scrolled, setScrolled]     = useState(false)
-  const [menuOpen, setMenuOpen]     = useState(false)
-  const [activeSection, setActive]  = useState('')
+  const [scrolled, setScrolled]    = useState(false)
+  const [menuOpen, setMenuOpen]    = useState(false)
+  const [activeSection, setActive] = useState('')
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id)
-        })
-      },
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id) }),
       { rootMargin: '-40% 0px -55% 0px' },
     )
     navLinks.forEach(({ href }) => {
@@ -43,31 +38,26 @@ export default function Header() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-md border-b border-neutral-200/80 shadow-sm'
-          : 'bg-transparent'
+          ? 'border-b border-ink/[.06]'
+          : ''
       }`}
+      style={scrolled ? { background: 'rgba(245,242,236,.82)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' } : {}}
     >
-      <div className="section-container flex items-center justify-between h-16">
-        {/* Logo */}
-        <a
-          href="#"
-          className="font-mono text-sm font-medium text-neutral-900 tracking-tight hover:text-accent-600 transition-colors duration-150"
-        >
-          G. —
+      <div className="px-10 flex items-center justify-between h-16">
+        <a href="#" className="font-serif text-[20px] tracking-[-0.5px] text-ink">
+          Gerardo.
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map(({ href, label }) => {
             const id = href.slice(1)
             return (
               <a
                 key={href}
                 href={href}
-                className={`text-sm transition-colors duration-150 ${
-                  activeSection === id
-                    ? 'text-neutral-900 font-medium'
-                    : 'text-neutral-500 hover:text-neutral-800'
+                className={`text-[11px] tracking-[2px] uppercase transition-opacity duration-150 ${
+                  activeSection === id ? 'opacity-100' : 'opacity-50 hover:opacity-100'
                 }`}
               >
                 {label}
@@ -82,9 +72,9 @@ export default function Header() {
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-px bg-neutral-900 transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`} />
-          <span className={`block w-5 h-px bg-neutral-900 transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-px bg-neutral-900 transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
         </button>
       </div>
 
@@ -96,14 +86,15 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden bg-white border-b border-neutral-200 overflow-hidden"
+            className="md:hidden border-b border-ink/[.06] overflow-hidden"
+            style={{ background: 'var(--paper)' }}
           >
-            <nav className="section-container flex flex-col py-4 gap-4">
+            <nav className="px-10 flex flex-col py-4 gap-4">
               {navLinks.map(({ href, label }) => (
                 <a
                   key={href}
                   href={href}
-                  className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors duration-150"
+                  className="text-[11px] tracking-[2px] uppercase opacity-50 hover:opacity-100 transition-opacity duration-150"
                   onClick={() => setMenuOpen(false)}
                 >
                   {label}

@@ -1,86 +1,87 @@
 import AnimatedSection from '../ui/AnimatedSection'
 
-const highlights = [
-  { value: '4+', label: 'años escribiendo Java' },
-  { value: '10+', label: 'APIs REST en producción' },
-  { value: 'Clean', label: 'Architecture first' },
+const stats = [
+  { num: '3+',  label: 'Teams adopted\nmy tools' },
+  { num: '5+',  label: 'Projects\nshipped' },
+  { num: '4+',  label: 'Languages\n& frameworks' },
+  { num: '∞',   label: 'Problems\nto solve' },
 ]
 
 export default function About() {
   return (
-    <section id="about" className="py-28 bg-neutral-50">
-      <div className="section-container">
+    <section id="about" className="py-28 px-10">
+      <div className="max-w-content mx-auto">
         <AnimatedSection>
-          <span className="section-label">Sobre mí</span>
-          <h2 className="section-heading mt-2">Ingeniería con criterio</h2>
-          <div className="section-divider" />
+          <div className="section-label mb-16">About me</div>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Text column */}
-          <div className="space-y-5">
-            <AnimatedSection delay={0.1}>
-              <p className="text-neutral-600 leading-relaxed">
-                Soy Ingeniero en Software especializado en el desarrollo de backends con{' '}
-                <span className="text-neutral-900 font-medium">Java y Spring Boot</span>.
-                Me interesa construir sistemas que funcionen bien hoy y que sigan siendo mantenibles
-                en seis meses — lo cual, en la práctica, requiere tanto disciplina técnica como
-                capacidad de tomar decisiones de diseño coherentes.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={0.15}>
-              <p className="text-neutral-600 leading-relaxed">
-                Mi enfoque pasa por mantener las capas bien separadas, escribir código que
-                comunique la intención, y pensar en los contratos de las APIs antes de en
-                la implementación. No soy de los que sobre-diseñan, pero tampoco de los que
-                ignoran la arquitectura.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={0.2}>
-              <p className="text-neutral-600 leading-relaxed">
-                Fuera del backend, tengo interés genuino en el frontend moderno — trabajo con
-                React y TypeScript — y en cómo sistemas distribuidos resuelven
-                problemas de escala sin volverte loco operativamente.
-              </p>
-            </AnimatedSection>
-          </div>
-
-          {/* Stats column */}
-          <AnimatedSection delay={0.25}>
-            <div className="grid grid-cols-1 gap-6">
-              {highlights.map(({ value, label }) => (
-                <div key={label} className="flex items-center gap-5 py-5 border-b border-neutral-200 last:border-b-0">
-                  <span className="text-2xl font-semibold text-neutral-900 tracking-tight w-16 shrink-0">
-                    {value}
+        <div className="grid md:grid-cols-[1fr_1.4fr] gap-20 items-start">
+          {/* Dark card + stats */}
+          <AnimatedSection>
+            <div
+              className="relative overflow-hidden p-10 rounded-sm"
+              style={{ background: 'var(--ink)', color: 'var(--paper)' }}
+            >
+              {/* Watermark */}
+              <span
+                className="font-serif absolute pointer-events-none select-none"
+                style={{ fontSize: 200, right: -30, bottom: -60, opacity: .07, lineHeight: 1, color: 'var(--paper)' }}
+              >
+                G
+              </span>
+              <div className="text-[11px] tracking-[2px] uppercase opacity-40 mb-4">Software Engineer</div>
+              <div className="font-serif text-[32px] leading-tight mb-8">Gerardo<br />Gómez</div>
+              <div className="flex flex-wrap gap-2">
+                {['San José, CR', 'Full-stack', 'Open to roles'].map((b) => (
+                  <span
+                    key={b}
+                    className="px-3.5 py-1.5 text-[10px] tracking-[1.5px] uppercase rounded-full border"
+                    style={{ borderColor: 'rgba(245,242,236,.15)' }}
+                  >
+                    {b}
                   </span>
-                  <span className="text-sm text-neutral-500">{label}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Stats grid */}
+            <div
+              className="grid grid-cols-2 border mt-0"
+              style={{ gap: 1, background: 'rgba(14,14,14,.1)', borderColor: 'rgba(14,14,14,.1)' }}
+            >
+              {stats.map(({ num, label }) => (
+                <div
+                  key={num}
+                  className="text-center py-6 px-4"
+                  style={{ background: 'var(--paper)' }}
+                >
+                  <span className="font-serif text-[40px] block mb-1" style={{ color: 'var(--accent)' }}>
+                    {num}
+                  </span>
+                  <span className="text-[10px] tracking-[2px] uppercase opacity-40 whitespace-pre-line leading-tight">
+                    {label}
+                  </span>
                 </div>
               ))}
+            </div>
+          </AnimatedSection>
 
-              {/* Values */}
-              <div className="mt-4 p-5 bg-white border border-neutral-200 rounded-xl">
-                <p className="text-xs font-mono text-neutral-400 uppercase tracking-widest mb-3">
-                  Principios
-                </p>
-                <ul className="space-y-2 text-sm text-neutral-600">
-                  <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-accent-500 rounded-full shrink-0" />
-                    Código legible antes que código inteligente
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-accent-500 rounded-full shrink-0" />
-                    Las APIs son contratos, no detalles de implementación
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-accent-500 rounded-full shrink-0" />
-                    Test primero cuando el dominio lo requiere
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-accent-500 rounded-full shrink-0" />
-                    La complejidad tiene que justificarse
-                  </li>
-                </ul>
-              </div>
+          {/* Text */}
+          <AnimatedSection delay={0.2}>
+            <div className="pt-2 space-y-5 text-[12px] leading-[1.9] opacity-70">
+              <p>
+                I'm a self-taught full-stack developer based in San José, Costa Rica. I build
+                web apps, mobile apps, and backend systems — from React frontends to FastAPI
+                services to Flutter mobile clients — wherever the problem takes me.
+              </p>
+              <p>
+                I've shipped internal dashboards, automation pipelines, and client-facing tools
+                that get used in production. 
+              </p>
+              <p>
+                I learn what the problem demands. The stack follows the goal, not the other way
+                around. 
+              </p>
             </div>
           </AnimatedSection>
         </div>
