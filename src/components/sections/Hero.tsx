@@ -83,7 +83,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-content mx-auto w-full grid md:grid-cols-[1fr_auto] items-center gap-8">
+      <div className="relative z-10 max-w-content mx-auto w-full grid grid-cols-[1fr_auto] items-center gap-4 md:gap-8">
         <div>
         {/* Tag */}
         <AnimatedSection>
@@ -116,13 +116,8 @@ export default function Hero() {
 
         {/* Character */}
         <AnimatedSection delay={0.3}>
-          <div style={{ width: 'clamp(180px, 30vw, 280px)', height: 'clamp(180px, 30vw, 280px)' }}>
-            <Player
-              autoplay
-              loop
-              src="/Web Development.json"
-              style={{ width: '100%', height: '100%' }}
-            />
+          <div style={{ width: 'clamp(140px, 25vw, 280px)', height: 'clamp(140px, 25vw, 280px)' }}>
+            <Player autoplay loop src="/Web Development.json" style={{ width: '100%', height: '100%' }} />
           </div>
         </AnimatedSection>
       </div>
