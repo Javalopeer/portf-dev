@@ -1,5 +1,63 @@
 import AnimatedSection from '../ui/AnimatedSection'
 import { Player } from '@lottiefiles/react-lottie-player'
+import { motion, useAnimationControls } from 'framer-motion'
+import { useEffect } from 'react'
+
+const lines = [
+  <span key="0">Building</span>,
+  <em key="1" className="italic" style={{ color: 'var(--accent)' }}>things</em>,
+  <span key="2">that work.</span>,
+]
+
+function AnimatedLine({ word, i }: { word: React.ReactNode; i: number }) {
+  const controls = useAnimationControls()
+
+  useEffect(() => {
+    const run = async () => {
+      await controls.start({
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.65, delay: i * 0.13, ease: [0.21, 0.45, 0.27, 0.9] },
+      })
+      controls.start({
+        y: [0, -7, 0],
+        transition: {
+          duration: 2 + i * 0.8,
+          repeat: Infinity,
+          repeatType: 'mirror',
+          ease: 'easeInOut',
+          delay: i * 0.6,
+        },
+      })
+    }
+    run()
+  }, [])
+
+  return (
+    <span className="block">
+      <motion.span
+        className="block"
+        initial={{ y: 40, opacity: 0 }}
+        animate={controls}
+      >
+        {word}
+      </motion.span>
+    </span>
+  )
+}
+
+function AnimatedHeadline() {
+  return (
+    <h1
+      className="font-serif leading-[.95] tracking-[-2px] mb-7"
+      style={{ fontSize: 'clamp(52px, 9vw, 120px)' }}
+    >
+      {lines.map((word, i) => (
+        <AnimatedLine key={i} word={word} i={i} />
+      ))}
+    </h1>
+  )
+}
 
 export default function Hero() {
   return (
@@ -36,16 +94,7 @@ export default function Hero() {
         </AnimatedSection>
 
         {/* Headline */}
-        <AnimatedSection delay={0.1}>
-          <h1
-            className="font-serif leading-[.95] tracking-[-2px] mb-7"
-            style={{ fontSize: 'clamp(52px, 9vw, 120px)' }}
-          >
-            Building<br />
-            <em className="italic" style={{ color: 'var(--accent)' }}>things</em>
-            <br />that work.
-          </h1>
-        </AnimatedSection>
+        <AnimatedHeadline />
 
         {/* Description + scroll */}
         <AnimatedSection delay={0.2}>

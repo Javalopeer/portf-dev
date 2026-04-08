@@ -1,11 +1,5 @@
 import AnimatedSection from '../ui/AnimatedSection'
 
-const stats = [
-  { num: '3+',  label: 'Teams adopted\nmy tools' },
-  { num: '5+',  label: 'Projects\nshipped' },
-  { num: '4+',  label: 'Languages\n& frameworks' },
-  { num: '∞',   label: 'Problems\nto solve' },
-]
 
 export default function About() {
   return (
@@ -31,6 +25,10 @@ export default function About() {
               </span>
               <div className="text-[11px] tracking-[2px] uppercase opacity-40 mb-4">Software Engineer</div>
               <div className="font-serif text-[32px] leading-tight mb-8">Gerardo<br />Gómez</div>
+              <div className="text-[11px] leading-[1.8] mb-8" style={{ opacity: .5 }}>
+                Mathematician turned software engineer.<br />
+                Gym, meditation & endless curiosity.
+              </div>
               <div className="flex flex-wrap gap-2">
                 {['San José, CR', 'Full-stack', 'Open to roles'].map((b) => (
                   <span
@@ -43,46 +41,32 @@ export default function About() {
                 ))}
               </div>
             </div>
-
-            {/* Stats grid */}
-            <div
-              className="grid grid-cols-2 border mt-0"
-              style={{ gap: 1, background: 'rgba(14,14,14,.1)', borderColor: 'rgba(14,14,14,.1)' }}
-            >
-              {stats.map(({ num, label }) => (
-                <div
-                  key={num}
-                  className="text-center py-6 px-4"
-                  style={{ background: 'var(--paper)' }}
-                >
-                  <span className="font-serif text-[40px] block mb-1" style={{ color: 'var(--accent)' }}>
-                    {num}
-                  </span>
-                  <span className="text-[10px] tracking-[2px] uppercase opacity-40 whitespace-pre-line leading-tight">
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </div>
           </AnimatedSection>
 
           {/* Text */}
           <AnimatedSection delay={0.2}>
             <div className="pt-2 space-y-5 text-[12px] leading-[1.9] opacity-70">
               <p>
-                I'm a self-taught full-stack developer based in San José, Costa Rica. I build
-                web apps, mobile apps, and backend systems — from React frontends to FastAPI
-                services to Flutter mobile clients — wherever the problem takes me.
+                I'm 26, based in San José, Costa Rica. I studied Mathematics Education and
+                I'm currently finishing a Software Engineering degree — a path that shaped
+                how I think: structured, patient, and precise.
               </p>
               <p>
-                I've shipped internal dashboards, automation pipelines, and client-facing tools
-                that get used in production. 
+                I'm self-taught at heart. I don't wait for a course to tell me what to learn —
+                I find the problem first, then go deep on whatever it takes to solve it.
+                The stack follows the goal, not the other way around.
               </p>
               <p>
-                I learn what the problem demands. The stack follows the goal, not the other way
-                around. 
+                What drives me is breaking hard problems into small, solvable pieces and
+                building something from nothing. I'm detail-oriented and deliberate — I care
+                about getting things right, not just getting them done.
+              </p>
+              <p>
+                Outside of code I'm at the gym, meditating, or down a rabbit hole learning
+                something completely unrelated to software. Curiosity doesn't clock out.
               </p>
             </div>
+
           </AnimatedSection>
         </div>
       </div>
