@@ -83,7 +83,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-content mx-auto w-full grid grid-cols-[1fr_auto] items-center gap-4 md:gap-8">
+      <div className="relative z-10 max-w-content mx-auto w-full grid grid-cols-[1fr_auto] items-start gap-4 md:gap-8 min-w-0">
         <div>
         {/* Tag */}
         <AnimatedSection>
@@ -96,28 +96,31 @@ export default function Hero() {
         {/* Headline */}
         <AnimatedHeadline />
 
-        {/* Description + scroll */}
+        </div>
+
+        {/* Character */}
+        <AnimatedSection delay={0.3}>
+          <div style={{ width: 'clamp(100px, 18vw, 200px)', height: 'clamp(100px, 18vw, 200px)', marginTop: 'clamp(52px, 9vw, 66px)', flexShrink: 0 }}>
+            <Player autoplay loop src="/Web Development.json" style={{ width: '100%', height: '100%' }} />
+          </div>
+        </AnimatedSection>
+      </div>
+
+      {/* Description + scroll */}
+      <div className="relative z-10 max-w-content mx-auto w-full mt-8">
         <AnimatedSection delay={0.2}>
-          <div className="flex items-end justify-between flex-wrap gap-5">
-            <p className="leading-[1.8] opacity-60 text-[12px]" style={{ maxWidth: 360 }}>
+          <div className="flex flex-col items-center gap-5">
+            <p className="leading-[1.8] opacity-60 text-[12px] text-center" style={{ maxWidth: 360 }}>
               Full-stack developer crafting web apps, mobile apps, and backend systems
               that solve real problems — from idea to production.
             </p>
-            <div className="hidden sm:flex flex-col items-center gap-2 opacity-30 text-[10px] tracking-[2px] uppercase">
+            <div className="flex flex-col items-center gap-2 opacity-30 text-[10px] tracking-[2px] uppercase">
               <span
                 className="w-px animate-scrollpulse"
                 style={{ height: 50, background: 'var(--ink)', display: 'block' }}
               />
               Scroll
             </div>
-          </div>
-        </AnimatedSection>
-        </div>
-
-        {/* Character */}
-        <AnimatedSection delay={0.3}>
-          <div style={{ width: 'clamp(140px, 25vw, 280px)', height: 'clamp(140px, 25vw, 280px)' }}>
-            <Player autoplay loop src="/Web Development.json" style={{ width: '100%', height: '100%' }} />
           </div>
         </AnimatedSection>
       </div>

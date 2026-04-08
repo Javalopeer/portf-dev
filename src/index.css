@@ -20,13 +20,17 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  body {
+  html, body {
     background: var(--paper);
     color: var(--ink);
     font-family: 'Geist Mono', monospace;
     font-size: 13px;
     overflow-x: hidden;
-    cursor: none;
+    max-width: 100vw;
+  }
+
+  @media (pointer: fine) {
+    body { cursor: none; }
   }
 
   /* Noise overlay */
@@ -51,22 +55,27 @@
 }
 
 @layer components {
-  /* Custom cursor */
-  .cursor {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform .1s, width .2s, height .2s, opacity .2s;
-  }
-  .cursor.hover {
-    width: 40px;
-    height: 40px;
-    opacity: .3;
+  /* Custom cursor — only on mouse devices */
+  .cursor { display: none; }
+
+  @media (pointer: fine) {
+    .cursor {
+      display: block;
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform .1s, width .2s, height .2s, opacity .2s;
+    }
+    .cursor.hover {
+      width: 40px;
+      height: 40px;
+      opacity: .3;
+    }
   }
 
   /* Layout */

@@ -34,6 +34,25 @@ export default function Header() {
   const isVisible = scrolled || menuOpen
 
   return (
+    <>
+      {/* Page blur overlay when menu open */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 pointer-events-none"
+            style={{
+              backdropFilter: 'blur(6px)',
+              WebkitBackdropFilter: 'blur(6px)',
+              background: 'rgba(245,242,236,.4)',
+            }}
+          />
+        )}
+      </AnimatePresence>
+
     <div
       className="fixed top-0 left-0 right-0 z-50"
       style={{ paddingTop: 'env(safe-area-inset-top)', background: 'var(--paper)' }}
@@ -80,9 +99,9 @@ export default function Header() {
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-px bg-ink transition-all duration-200 origin-center ${menuOpen ? 'rotate-45 translate-y-[3.5px]' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 origin-center ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
           <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-px bg-ink transition-all duration-200 origin-center ${menuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 origin-center ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
         </button>
       </motion.header>
 
@@ -94,12 +113,11 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden"
+            className="md:hidden overflow-visible relative"
             style={{
               background: 'rgba(245,242,236,.96)',
               backdropFilter: 'blur(12px)',
               WebkitBackdropFilter: 'blur(12px)',
-              borderBottom: '1px solid rgba(14,14,14,.06)',
             }}
           >
             <nav className="px-10 flex flex-col py-5 gap-5">
@@ -108,15 +126,31 @@ export default function Header() {
                   key={href}
                   href={href}
                   className="text-[11px] tracking-[2px] uppercase opacity-50 hover:opacity-100 transition-opacity duration-150"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setMenuOpen(false)
+                    setTimeout(() => {
+                      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+                    }, 300)
+                  }}
                 >
                   {label}
                 </a>
               ))}
             </nav>
+            {/* Gradient fade into blur */}
+            <div
+              className="absolute left-0 right-0 pointer-events-none"
+              style={{
+                bottom: -80,
+                height: 100,
+                background: 'linear-gradient(to bottom, rgba(245,242,236,.96), transparent)',
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
     </div>
+    </>
   )
 }
