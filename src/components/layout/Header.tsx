@@ -31,21 +31,26 @@ export default function Header() {
     return () => observer.disconnect()
   }, [])
 
+  const isVisible = scrolled || menuOpen
+
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'border-b border-ink/[.06]'
-          : ''
-      }`}
-      style={scrolled ? { background: 'rgba(245,242,236,.82)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' } : {}}
-    >
-      <div className="px-10 flex items-center justify-between h-16">
+    <div className="fixed top-0 left-0 right-0 z-50">
+      {/* Bar */}
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="h-16 px-10 flex items-center justify-between"
+        style={{
+          background: isVisible ? 'rgba(245,242,236,.96)' : 'transparent',
+          backdropFilter: isVisible ? 'blur(12px)' : 'none',
+          WebkitBackdropFilter: isVisible ? 'blur(12px)' : 'none',
+          borderBottom: `1px solid ${isVisible ? 'rgba(14,14,14,.06)' : 'transparent'}`,
+          transition: 'background .3s, border-color .3s',
+        }}
+      >
         <a href="#" className="font-serif text-[20px] tracking-[-0.5px] text-ink">
-          Gerardo.
+          Gera-dev.
         </a>
 
         {/* Desktop nav */}
@@ -68,17 +73,17 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-1"
+          className="md:hidden flex flex-col gap-[6px] p-1"
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 origin-center ${menuOpen ? 'rotate-45 translate-y-[3.5px]' : ''}`} />
           <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 origin-center ${menuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''}`} />
         </button>
-      </div>
+      </motion.header>
 
-      {/* Mobile menu */}
+      {/* Mobile dropdown — outside the h-16 bar so it doesn't clip */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -86,10 +91,15 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden border-b border-ink/[.06] overflow-hidden"
-            style={{ background: 'var(--paper)' }}
+            className="md:hidden overflow-hidden"
+            style={{
+              background: 'rgba(245,242,236,.96)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              borderBottom: '1px solid rgba(14,14,14,.06)',
+            }}
           >
-            <nav className="px-10 flex flex-col py-4 gap-4">
+            <nav className="px-10 flex flex-col py-5 gap-5">
               {navLinks.map(({ href, label }) => (
                 <a
                   key={href}
@@ -104,6 +114,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </div>
   )
 }

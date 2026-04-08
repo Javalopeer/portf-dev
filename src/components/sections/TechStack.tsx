@@ -3,10 +3,10 @@ import { techStack } from '../../data/techStack'
 
 export default function TechStack() {
   return (
-    <section id="skills" className="py-28 px-10">
+    <section id="skills" className="pt-12 pb-24 px-10 scroll-mt-16">
       <div className="max-w-content mx-auto">
         <AnimatedSection>
-          <div className="section-label mb-16">Toolkit</div>
+          <div className="section-label mb-10">Toolkit</div>
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>

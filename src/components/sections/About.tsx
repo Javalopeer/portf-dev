@@ -9,10 +9,10 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-28 px-10">
+    <section id="about" className="pt-12 pb-24 px-10 scroll-mt-16">
       <div className="max-w-content mx-auto">
         <AnimatedSection>
-          <div className="section-label mb-16">About me</div>
+          <div className="section-label mb-10">About me</div>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-[1fr_1.4fr] gap-20 items-start">

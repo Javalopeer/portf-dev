@@ -5,7 +5,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-28 px-10"
+      className="pt-12 pb-24 px-10 scroll-mt-16"
       style={{ background: 'var(--ink)', color: 'var(--paper)' }}
     >
       <div className="max-w-content mx-auto">

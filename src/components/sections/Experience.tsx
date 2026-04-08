@@ -3,10 +3,10 @@ import { timeline } from '../../data/experience'
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-28 px-10">
+    <section id="experience" className="pt-12 pb-24 px-10 scroll-mt-16">
       <div className="max-w-content mx-auto">
         <AnimatedSection>
-          <div className="section-label mb-16">Experience</div>
+          <div className="section-label mb-10">Experience</div>
         </AnimatedSection>
 
         <div>

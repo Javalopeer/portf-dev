@@ -2,7 +2,7 @@ import AnimatedSection from '../ui/AnimatedSection'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-32 px-10 text-center relative overflow-hidden">
+    <section id="contact" className="py-32 px-10 text-center relative overflow-hidden scroll-mt-16">
       {/* Watermark */}
       <span
         className="font-serif absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap pointer-events-none select-none"
