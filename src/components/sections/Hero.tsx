@@ -116,7 +116,7 @@ export default function Hero() {
 
         {/* Character */}
         <AnimatedSection delay={0.3}>
-          <div className="hidden md:block" style={{ width: 280, height: 280 }}>
+          <div style={{ width: 'clamp(180px, 30vw, 280px)', height: 'clamp(180px, 30vw, 280px)' }}>
             <Player
               autoplay
               loop
