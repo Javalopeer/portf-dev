@@ -46,7 +46,7 @@ export default function Contact() {
             </a>
             <a
               className="btn-outline"
-              href="https://linkedin.com/in/gerardo"
+              href="https://www.linkedin.com/in/gerardo-g%C3%B3mez-543809172/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -59,6 +59,13 @@ export default function Contact() {
               rel="noopener noreferrer"
             >
               GitHub
+            </a>
+            <a
+              className="btn-outline"
+              href="/assets/CV Gerardo.pdf"
+              download
+            >
+              ↓ CV
             </a>
           </div>
         </AnimatedSection>
