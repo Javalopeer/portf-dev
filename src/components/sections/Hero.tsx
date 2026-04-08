@@ -1,4 +1,5 @@
 import AnimatedSection from '../ui/AnimatedSection'
+import { Player } from '@lottiefiles/react-lottie-player'
 
 export default function Hero() {
   return (
@@ -24,7 +25,8 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-content mx-auto w-full">
+      <div className="relative z-10 max-w-content mx-auto w-full grid md:grid-cols-[1fr_auto] items-center gap-8">
+        <div>
         {/* Tag */}
         <AnimatedSection>
           <div className="flex items-center gap-3 text-[11px] tracking-[3px] uppercase opacity-40 mb-5">
@@ -59,6 +61,19 @@ export default function Hero() {
               />
               Scroll
             </div>
+          </div>
+        </AnimatedSection>
+        </div>
+
+        {/* Character */}
+        <AnimatedSection delay={0.3}>
+          <div className="hidden md:block" style={{ width: 280, height: 280 }}>
+            <Player
+              autoplay
+              loop
+              src="/Web Development.json"
+              style={{ width: '100%', height: '100%' }}
+            />
           </div>
         </AnimatedSection>
       </div>
