@@ -34,7 +34,10 @@ export default function Header() {
   const isVisible = scrolled || menuOpen
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50">
+    <div
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{ paddingTop: 'env(safe-area-inset-top)', background: 'var(--paper)' }}
+    >
       {/* Bar */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
