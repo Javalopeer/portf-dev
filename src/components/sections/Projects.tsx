@@ -1,5 +1,6 @@
 import AnimatedSection from '../ui/AnimatedSection'
 import { projects } from '../../data/projects'
+import TechBadge from '../ui/TechBadge'
 
 export default function Projects() {
   return (
@@ -52,7 +53,7 @@ export default function Projects() {
                       <span className="proj-tag featured">{project.status}</span>
                     )}
                     {project.techs.map((t) => (
-                      <span key={t} className="proj-tag">{t}</span>
+                      <TechBadge key={t} name={t}></TechBadge>
                     ))}
                   </div>
                 </div>
