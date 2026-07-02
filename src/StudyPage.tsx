@@ -1,17 +1,32 @@
-import Saludo from "./components/Saludo.tsx";
+import { PersonaCard } from "./components/PersonaCard.tsx";
+import { Persona } from "./types/types.ts";
+import { Contador } from "./components/Contador.tsx";
+import { useState } from "react";
+import { Formulario } from "./components/Formulario.tsx";
+import Usuarios from "./components/Usuarios.tsx";
 
-const nombres = ["Gerardo", "Alberto", "Cristiano", "Jeremias"];
+const personas: Persona[] = [
+  { nombre: "Gerardo", edad: 26, rol: "user", email: "gera@gera.com" },
+  { nombre: "Edgar", edad: 30, rol: "admin" },
+];
 
 export default function StudyPage() {
+  const [mostrar, setMostrar] = useState(true);
+
   return (
     <>
       <h1>Laboratorio de React</h1>
       <p>Aqui practico componentes</p>
-      {/*       <Saludo nombre="Gerardo" />
-      <Saludo nombre="Alberto" /> */}
-      {nombres.map((n) => (
-        <Saludo key={n} nombre={n} />
-      ))}
+      {mostrar &&
+        personas.map((n) => <PersonaCard key={n.nombre} persona={n} />)}
+      <hr></hr>
+      <Contador></Contador>
+      <button onClick={() => setMostrar(!mostrar)}>
+        {mostrar ? "Ocultar" : "Mostrar"}
+      </button>
+      <hr></hr>
+      <Formulario></Formulario>
+      <Usuarios></Usuarios>
     </>
   );
 }
