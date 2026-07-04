@@ -14,7 +14,9 @@ export default function Usuarios() {
   useEffect(() => {
     async function traer() {
       try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/users");
+        // Backend propio (api-practica, puerto 3000). Requiere el server corriendo.
+        // API publica de respaldo: https://jsonplaceholder.typicode.com/users
+        const res = await fetch("http://localhost:3000/usuarios");
         if (!res.ok) {
           throw new Error(`Error HTTP: ${res.status}`);
         }
