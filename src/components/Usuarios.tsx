@@ -11,6 +11,8 @@ export default function Usuarios() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
   const [nombre, setNombre] = useState("");
+  const [editandoId, setEditandoId] = useState<number | null>(null);
+  const [nombreEditado, setNombreEditado] = useState("");
 
   useEffect(() => {
     traer();
@@ -45,6 +47,23 @@ export default function Usuarios() {
     await traer();
   }
 
+  async function borrarUsuario(id:number){
+    await fetch (`http://localhost:3000/usuarios/${id}`, {
+    method: "DELETE",
+    });
+    await traer();
+  }
+
+   async function actualizarUsuario(id:number){
+    await fetch (`http://localhost:3000/usuarios/${id}`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name: nombreEditado}),
+    });
+    setEditandoId(null);
+    await traer();
+  }
+
   if (cargando) {
     return <p>Cargando...</p>;
   }
@@ -67,8 +86,22 @@ export default function Usuarios() {
       <ul>
         {usuarios.map((u) => (
           <li key={u.id}>
-            {u.name} ------ {u.email}
-            <br></br>
+            {editandoId === u.id? (
+              <>
+              <input
+              value={nombreEditado}
+              onChange={(e) => setNombreEditado(e.target.value)}
+              />
+              <button onClick={()=> actualizarUsuario(u.id)}>Guardar</button>
+              <button onClick={()=> setEditandoId(null)}>Cancelar</button>
+              </>
+            ):(
+              <>
+              {u.name}
+              <button onClick={()=>{setEditandoId(u.id); setNombreEditado(u.name)}}>----Editar----</button>
+              <button onClick={()=>borrarUsuario(u.id)}>Borrar</button>
+              </>
+            )}
           </li>
         ))}
       </ul>
